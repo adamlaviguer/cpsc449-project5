@@ -14,11 +14,14 @@ def sendDirectMessage(recipient, sender, message, quick_reply=None, dynamodb=Non
     elif quick_reply == 3:
         message = "Hey :)"
 
+    msgID = 2
+
     table = dynamodb.Table('Messages')
     response = table.put_item(
        Item={
             'recipient': recipient,
             'sender': sender,
+            'msgID': msgID,
             'message': message,
         }
     )
@@ -26,6 +29,6 @@ def sendDirectMessage(recipient, sender, message, quick_reply=None, dynamodb=Non
 
 
 if __name__ == '__main__':
-    message_resp = sendDirectMessage("Mike", "Adam", "This is a test message.", 2)
+    message_resp = sendDirectMessage("Mike", "Adam", "This is a test message.", 1)
     print("Put message succeeded:")
     pprint(message_resp, sort_dicts=False)

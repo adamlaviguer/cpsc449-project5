@@ -13,7 +13,7 @@ def create_messages_table(dynamodb=None):
                     'KeyType': 'HASH'
                },
                {
-                    'AttributeName': 'sender',
+                    'AttributeName': 'msgID',
                     'KeyType': 'RANGE'
                },
           ],
@@ -23,8 +23,8 @@ def create_messages_table(dynamodb=None):
                     'AttributeType': 'S'
                },
                {
-                    'AttributeName': 'sender',
-                    'AttributeType': 'S'
+                    'AttributeName': 'msgID',
+                    'AttributeType': 'N'
                },
           ],
           ProvisionedThroughput={
