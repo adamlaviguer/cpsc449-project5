@@ -9,27 +9,27 @@ def create_messages_table(dynamodb=None):
           TableName='Messages',
           KeySchema=[
                {
-                    'AttributeName': 'recipient',
+                    'AttributeName': 'msgID',
                     'KeyType': 'HASH'
                },
                {
-                    'AttributeName': 'msgID',
+                    'AttributeName': 'recipient',
                     'KeyType': 'RANGE'
                },
           ],
           AttributeDefinitions=[
                {
-                    'AttributeName': 'recipient',
-                    'AttributeType': 'S'
-               },
-               {
                     'AttributeName': 'msgID',
                     'AttributeType': 'N'
                },
+               {
+                    'AttributeName': 'recipient',
+                    'AttributeType': 'S'
+               },
           ],
           ProvisionedThroughput={
-               'ReadCapacityUnits': 5,
-               'WriteCapacityUnits': 5
+               'ReadCapacityUnits': 10,
+               'WriteCapacityUnits': 10
           }
      )
      return table

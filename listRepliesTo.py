@@ -3,7 +3,7 @@ import boto3
 from botocore.exceptions import ClientError
 
 
-def get_message(recipient, msgID, dynamodb=None):
+def listRepliesTo(recipient, msgID, dynamodb=None):
     if not dynamodb:
         dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
@@ -18,7 +18,8 @@ def get_message(recipient, msgID, dynamodb=None):
 
 
 if __name__ == '__main__':
-    message = get_message("Mike", 2)
+    # Must pass the msgID along with the recipient since the msgID is a key. If not, we get the error "The number of conditions on teh keys is invalid"
+    message = listRepliesTo("Adam", 4603)
     if message:
-        print("Get message succeeded:")
+        print("List replies succeeded:")
         pprint(message, sort_dicts=False)
